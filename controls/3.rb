@@ -17,9 +17,21 @@ end
 
 control '3.2' do
   impact 0.1
-  title '3.2 Title (Not Scored)'
-  desc 'Description.'
-  # describe file('/tmp') do
-  #   it { should be_directory }
-  # end
+  title '3.2 Set Permissions on bootloader config (Scored)'
+  desc 'Set permission on the your boot loaders config file to read and write for root only.'
+    describe file('/boot/grub/grub.cfg') do
+      it { should exist }
+      its("gid") { should cmp 0 }
+      its("uid") { should cmp 0 }
+      it { should be_owned_by 'root' }
+      it { should be_readable.by "owner" }
+      it { should be_writable.by "owner" }
+      it { should be_executable.by "owner" }
+      it { should_not be_executable.by "group" }
+      it { should_not be_readable.by "group" }
+      it { should_not be_writable.by "group" }
+      it { should_not be_executable.by "other" }
+      it { should_not be_readable.by "other" }
+      it { should_not be_writable.by "other" }
+    end
 end
