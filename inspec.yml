@@ -1,5 +1,5 @@
 name: ubuntu-14-cis-profile
-title: CIS Ubuntu 14.04 LTS Server Benchmark InSpec Profile
+title: CIS Ubuntu 14.04 LTS Server Benchmark InSpec Profile - workshop
 maintainer: Annie Hedgpeth
 copyright: Annie Hedgpeth
 copyright_email: annie.hedgpeth@gmail.com
