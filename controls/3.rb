@@ -11,7 +11,7 @@ control '3.1' do
   describe file('/boot/grub/grub.cfg') do
       it { should exist }
       it { should be_owned_by 'root' }
-     its('group') { should eq 'root'} 
+     its('group') { should eq 'root'}
   end
 end
 
