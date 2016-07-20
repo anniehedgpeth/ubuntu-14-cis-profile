@@ -22,16 +22,14 @@ control '4.1' do
   end
 end
 
-# control '4.3' do
-#   impact 0.1
-#   title '4.3 Enable Randomized Virtual Memory Region Placement'
-#   desc 'Randomly placing virtual memory regions will make it difficult to write memory page exploits as the memory placement will be consistently shifting.'
-#   describe file('/boot/grub/grub.cfg') do
-#       it { should exist }
-#       it { should be_owned_by 'root' }
-#      its('group') { should eq 'root'}
-#   end
-# end
+control '4.3' do
+  impact 0.1
+  title '4.3 Enable Randomized Virtual Memory Region Placement'
+  desc 'Set the system flag to force randomized virtual memory region placement.'
+  describe kernel_parameter('kernel.randomize_va_space') do
+    its('value') { should eq 2 }
+  end
+end
 
 # control '4.4' do
 #   impact 0.1
