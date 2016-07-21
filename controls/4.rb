@@ -31,16 +31,14 @@ control '4.3' do
   end
 end
 
-# control '4.4' do
-#   impact 0.1
-#   title '4.4 Disable Prelink'
-#   desc 'The prelinking feature changes binaries in an attempt to decrease their startup time.'
-#   describe file('/boot/grub/grub.cfg') do
-#       it { should exist }
-#       it { should be_owned_by 'root' }
-#      its('group') { should eq 'root'}
-#   end
-# end
+control '4.4' do
+  impact 0.1
+  title '4.4 Disable Prelink'
+  desc 'The prelinking feature changes binaries in an attempt to decrease their startup time.'
+  describe package('prelink') do
+      it { should_not be_installed }
+  end
+end
 
 # control '4.5' do
 #   impact 0.1
