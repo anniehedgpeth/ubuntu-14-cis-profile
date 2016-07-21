@@ -36,17 +36,19 @@ control '4.4' do
   title '4.4 Disable Prelink'
   desc 'The prelinking feature changes binaries in an attempt to decrease their startup time.'
   describe package('prelink') do
-      it { should_not be_installed }
+    it { should_not be_installed }
   end
 end
 
+# Commented out because, while the CIS benchmark recommends it be activated, Chef cannot be run if Apparmor is enabled. 
 # control '4.5' do
-#   impact 0.1
+#   impact 0.2
 #   title '4.5 Activate AppArmor'
 #   desc 'AppArmor provides a Mandatory Access Control (MAC) system that greatly augments the default Discretionary Access Control (DAC) model.'
-#   describe file('/boot/grub/grub.cfg') do
-#       it { should exist }
-#       it { should be_owned_by 'root' }
-#      its('group') { should eq 'root'}
+#   describe package('apparmor') do
+#     it { should exist }
+#   end
+#   describe package('apparmor-utils') do
+#     it { should exist }
 #   end
 # end
