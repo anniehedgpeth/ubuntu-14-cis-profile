@@ -12,7 +12,7 @@ control '4.1' do
     its('*') { should include ['hard', 'core', '0'] }
   end
   describe file('/etc/sysctl.conf') do
-    its('content') { should match /fs.suid_dumpable = 0/ }
+    its('content') { should match /^\s*fs.suid_dumpable = 0\s*(#.*)?$/ }
   end
   describe package('apport') do
     it { should_not be_installed }
