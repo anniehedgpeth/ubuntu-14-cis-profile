@@ -18,7 +18,7 @@ control '4.1' do
   #   options = {
   #     assignment_re: /^\s*([^:]*?)\s*:\s*(.*?)\s*$/
   #   }
-  describe parse_config('/etc/sysctl.conf', {}) do
+  describe parse_config('/etc/sysctl.conf') do
     its('fs.suid_dumpable') { should eq '0' }
   end
   describe package('apport') do
