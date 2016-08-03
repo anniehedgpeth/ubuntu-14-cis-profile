@@ -11,8 +11,15 @@ control '4.1' do
   describe limits_conf('/etc/security/limits.conf') do
     its('*') { should include ['hard', 'core', '0'] }
   end
-  describe file('/etc/sysctl.conf') do
-    its('content') { should match /^\s*fs.suid_dumpable = 0\s*(#.*)?$/ }
+  # describe file('/etc/sysctl.conf') do
+  #   its('content') { should match /^\s*fs.suid_dumpable = 0\s*(#.*)?$/ }
+  # end
+  # audit = command('sysctl fs.suid_dumpable').stdout
+  #   options = {
+  #     assignment_re: /^\s*([^:]*?)\s*:\s*(.*?)\s*$/
+  #   }
+  describe parse_config('/etc/sysctl.conf', {}) do
+    its('fs.suid_dumpable') { should eq '0' }
   end
   describe package('apport') do
     it { should_not be_installed }
